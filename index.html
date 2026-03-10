@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator Pro — SmartCalc™ Precision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BMI Calculator Pro — SmartCalc™ Absolute Precision</title>
     
-    <!-- FAVICON -->
-    <link rel="icon" type="image/jpeg" href="pulse.jpg?v=1.3">
-
-    <!-- SEO & PWA Meta -->
-    <meta name="description" content="Professional-grade BMI calculator. High-precision health analytics by SmartCalc™.">
+    <link rel="icon" type="image/jpeg" href="pulse.jpg?v=1.4">
+    <meta name="description" content="Professional-grade BMI analytics with ideal weight forecasting. Powered by SmartCalc™ Intelligence.">
     <link rel="canonical" href="https://n1043mn1ght-web.github.io" />
 
     <style>
@@ -17,81 +14,77 @@
             --primary: #2ecc71;
             --dark: #1e293b;
             --bg: #f8fafc;
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+        body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
 
-        header { background: var(--dark); color: white; padding: 2.5rem 1rem; text-align: center; }
-        .logo { font-size: 1.8rem; font-weight: 900; }
+        header { background: var(--dark); color: white; padding: 3rem 1rem; text-align: center; }
+        .logo { font-size: 2rem; font-weight: 900; letter-spacing: -1px; }
         .logo span { color: var(--primary); }
 
-        .wrapper { max-width: 1000px; margin: -30px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+        .wrapper { max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
 
-        .glass-card { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .glass-card { background: white; border-radius: 32px; padding: 45px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         
-        .control-group { margin-bottom: 25px; }
-        .label-box { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .label-box label { font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
-        .current-val { font-size: 1.4rem; font-weight: 800; }
+        .control-group { margin-bottom: 30px; }
+        .label-box { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .label-box label { font-size: 0.8rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+        .current-val { font-size: 1.6rem; font-weight: 900; color: var(--dark); }
 
-        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 8px; border-radius: 10px; outline: none; }
+        input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 10px; border-radius: 10px; outline: none; }
         input[type=range]::-webkit-slider-thumb { 
-            appearance: none; width: 24px; height: 24px; background: white; border: 4px solid var(--primary); 
-            border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            appearance: none; width: 28px; height: 28px; background: white; border: 5px solid var(--primary); 
+            border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
         }
 
-        /* NEW DYNAMIC GAUGE (Visual Comfort Version) */
-        .gauge-container { margin: 40px 0 20px; }
-        .gauge-track {
-            height: 12px;
-            background: linear-gradient(90deg, #f1c40f 0%, #2ecc71 25%, #27ae60 50%, #e67e22 75%, #e74c3c 100%);
-            border-radius: 20px;
-            position: relative;
-        }
+        /* GAUGE ENGINE */
+        .gauge-container { margin: 45px 0 25px; }
+        .gauge-track { height: 14px; background: linear-gradient(90deg, #f1c40f 0%, #2ecc71 25%, #27ae60 50%, #e67e22 75%, #e74c3c 100%); border-radius: 20px; position: relative; }
         .pointer {
-            position: absolute; top: -10px; width: 6px; height: 32px;
-            background: var(--dark); border: 2px solid white; border-radius: 10px;
+            position: absolute; top: -11px; width: 8px; height: 36px;
+            background: var(--dark); border: 3px solid white; border-radius: 10px;
             left: 50%; transform: translateX(-50%); transition: var(--transition);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 2;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); z-index: 2;
         }
-        .gauge-labels { display: flex; justify-content: space-between; margin-top: 12px; padding: 0 5px; }
-        .label-item { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; flex: 1; text-align: center; }
+        .gauge-labels { display: flex; justify-content: space-between; margin-top: 15px; }
+        .label-item { font-size: 11px; font-weight: 800; color: #cbd5e1; text-transform: uppercase; flex: 1; text-align: center; }
 
-        /* Advice Box */
-        .advice-box { margin-top: 30px; padding: 20px; border-radius: 16px; border-left: 4px solid var(--primary); background: #f1f5f9; }
-        #advice-title { display: block; font-weight: 800; font-size: 1.1rem; }
-        #advice-body { margin-top: 5px; font-size: 0.9rem; color: #64748b; }
+        /* ADVANCED ANALYTICS BOX */
+        .analysis-box { margin-top: 40px; padding: 25px; border-radius: 20px; background: #f1f5f9; transition: var(--transition); }
+        #ideal-weight { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+        .source-link { display: block; margin-top: 15px; font-size: 0.75rem; color: #94a3b8; text-decoration: none; font-weight: 600; }
 
-        /* Result Sidebar */
-        .result-panel { text-align: center; background: white; border-radius: 24px; padding: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); height: fit-content; position: sticky; top: 20px; }
-        .score-num { font-size: 6rem; font-weight: 900; color: var(--dark); letter-spacing: -3px; line-height: 1; }
-        .status-badge { display: inline-block; padding: 8px 25px; border-radius: 100px; font-weight: 800; font-size: 1rem; margin-top: 20px; }
+        /* RESULT SIDEBAR */
+        .result-panel { text-align: center; background: white; border-radius: 32px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); height: fit-content; position: sticky; top: 20px; transition: var(--transition); }
+        .score-num { font-size: 7.5rem; font-weight: 900; color: var(--dark); letter-spacing: -5px; line-height: 1; transition: 0.3s; }
+        .status-badge { display: inline-block; padding: 10px 35px; border-radius: 100px; font-weight: 900; font-size: 1.1rem; margin-top: 25px; text-transform: uppercase; }
 
-        .eco-section { grid-column: span 2; padding: 30px; background: white; border-radius: 24px; margin-top: 20px; }
-        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .eco-link { padding: 15px; border: 1px solid #f1f5f9; border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; }
-        .eco-link:hover { border-color: var(--primary); background: #f0fdfa; transform: translateY(-2px); }
+        /* ECOSYSTEM FOOTER */
+        .eco-section { grid-column: span 2; padding: 40px; background: white; border-radius: 32px; margin-top: 20px; }
+        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 25px; }
+        .eco-link { padding: 20px; border: 2px solid #f1f5f9; border-radius: 18px; text-decoration: none; color: inherit; transition: 0.4s; }
+        .eco-link:hover { border-color: var(--primary); background: #f0fdfa; transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-        @media (max-width: 850px) { .wrapper { grid-template-columns: 1fr; } .eco-section { grid-column: 1; } }
+        @media (max-width: 850px) { .wrapper { grid-template-columns: 1fr; } .eco-section { grid-column: 1; } .score-num { font-size: 6rem; } }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Smart<span>Calc</span> Health</div>
+    <div class="logo">Smart<span>Calc</span> Health Pro</div>
 </header>
 
 <main class="wrapper">
     <section class="glass-card">
         <div class="control-group">
-            <div class="label-box"><label>Height</label><span class="current-val" id="h-txt">175 cm</span></div>
+            <div class="label-box"><label>Precision Height</label><span class="current-val" id="h-txt">175 cm</span></div>
             <input type="range" id="h-in" min="100" max="240" value="175">
         </div>
         <div class="control-group">
-            <div class="label-box"><label>Weight</label><span class="current-val" id="w-txt">70 kg</span></div>
-            <input type="range" id="w-in" min="30" max="180" value="70">
+            <div class="label-box"><label>Precision Weight</label><span class="current-val" id="w-txt">75 kg</span></div>
+            <input type="range" id="w-in" min="30" max="180" value="75">
         </div>
 
         <div class="gauge-container">
@@ -104,24 +97,27 @@
             </div>
         </div>
 
-        <div class="advice-box">
-            <strong id="advice-title">Determining...</strong>
-            <p id="advice-body">Adjust sliders for instant medical-grade analysis.</p>
+        <div class="analysis-box">
+            <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Medical Forecasting</div>
+            <div id="ideal-weight" style="margin: 10px 0;">Ideal weight: 62 - 76 kg</div>
+            <p id="advice-body" style="margin: 0; font-size: 0.95rem; color: #64748b;">Adjusting sliders will trigger WHO-standard health analytics.</p>
+            <a href="https://www.who.int" target="_blank" class="source-link">Standardized by World Health Organization ↗</a>
         </div>
     </section>
 
-    <section class="result-panel">
-        <div style="font-weight: 800; color: #cbd5e1; letter-spacing: 2px; font-size: 0.7rem;">BMI INDEX</div>
-        <div class="score-num" id="score">22.9</div>
+    <section class="result-panel" id="res-panel">
+        <div style="font-weight: 900; color: #cbd5e1; letter-spacing: 3px; font-size: 0.8rem;">BMI SCORE</div>
+        <div class="score-num" id="score">24.5</div>
         <div id="badge" class="status-badge" style="background: #e8f8ef; color: #2ecc71;">Healthy</div>
-        <button onclick="window.print()" style="width: 100%; margin-top: 30px; padding: 15px; border: none; border-radius: 12px; background: var(--dark); color: white; font-weight: 700; cursor: pointer;">Print Report</button>
+        <button onclick="window.print()" style="width: 100%; margin-top: 40px; padding: 18px; border: none; border-radius: 15px; background: var(--dark); color: white; font-weight: 800; cursor: pointer; letter-spacing: 1px;">GENERATE REPORT</button>
     </section>
 
     <article class="eco-section">
-        <h3 style="margin-top:0">SmartCalc™ Ecosystem</h3>
+        <h3 style="margin-top:0; font-size: 1.5rem;">SmartCalc™ Global Ecosystem</h3>
         <div class="eco-grid">
-            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Invest Pro</strong><br><small>Compound analytics</small></a>
-            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Daily Tools</strong><br><small>Essential utilities</small></a>
+            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Invest Pro</strong><br><small>Compound interest forecasting</small></a>
+            <a href="https://n1043mn1ght-web.github.io" class="eco-link"><strong>Utilities</strong><br><small>Everyday essential tools</small></a>
+            <a href="#" class="eco-link" style="opacity:0.6"><strong>Loan Pro</strong><br><small>Advanced Amortization (Soon)</small></a>
         </div>
     </article>
 </main>
@@ -130,30 +126,40 @@
     const hIn = document.getElementById('h-in'), wIn = document.getElementById('w-in'),
           hTxt = document.getElementById('h-txt'), wTxt = document.getElementById('w-txt'),
           score = document.getElementById('score'), badge = document.getElementById('badge'),
-          ptr = document.getElementById('pointer'), adTitle = document.getElementById('advice-title'),
-          adBody = document.getElementById('advice-body');
+          ptr = document.getElementById('pointer'), adBody = document.getElementById('advice-body'),
+          idealBox = document.getElementById('ideal-weight'), resPanel = document.getElementById('res-panel');
 
     function update() {
         const h = hIn.value, w = wIn.value;
         const bmi = (w / ((h / 100) ** 2)).toFixed(1);
         
+        // Calculate Ideal Weight (BMI 18.5 to 24.9)
+        const minW = (18.5 * ((h / 100) ** 2)).toFixed(0);
+        const maxW = (24.9 * ((h / 100) ** 2)).toFixed(0);
+        
         hTxt.innerText = h + ' cm';
         wTxt.innerText = w + ' kg';
+        idealBox.innerText = `Ideal Range: ${minW} – ${maxW} kg`;
+        
+        // Ticker Animation (Simple)
         score.innerText = bmi;
 
+        // Pointer Logic
         let pos = ((bmi - 15) / (40 - 15)) * 100;
         pos = Math.max(3, Math.min(97, pos));
         ptr.style.left = pos + '%';
 
-        if (bmi < 18.5) { set("Underweight", "#f1c40f", "#fef9e7", "Weight is below the optimal WHO threshold."); }
-        else if (bmi < 25) { set("Healthy", "#2ecc71", "#e8f8ef", "Your body mass index is in a perfect zone."); }
-        else if (bmi < 30) { set("Overweight", "#e67e22", "#fdf2e9", "Body weight is above the recommended range."); }
-        else { set("Obesity", "#e74c3c", "#fdedec", "Clinical risk alert: High BMI category detected."); }
+        if (bmi < 18.5) { set("Underweight", "#f1c40f", "#fef9e7", "Weight is below the optimal threshold."); }
+        else if (bmi < 25) { set("Healthy", "#2ecc71", "#e8f8ef", "Your BMI is within the target medical zone."); }
+        else if (bmi < 30) { set("Overweight", "#e67e22", "#fdf2e9", "Slight elevation above the healthy range."); }
+        else { set("Obesity", "#e74c3c", "#fdedec", "Clinical risk alert: BMI in high-risk category."); }
     }
 
     function set(t, c, bg, ad) {
         badge.innerText = t; badge.style.color = c; badge.style.background = bg;
-        adTitle.innerText = t; adBody.innerText = ad;
+        adBody.innerText = ad;
+        // Subtitle dynamic color
+        idealBox.style.color = c;
     }
 
     [hIn, wIn].forEach(el => el.addEventListener('input', update));
