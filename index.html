@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BMI Pro — SmartCalc™ Health Intelligence & BMI Engine</title>
     
-    <!-- FAVICON IMPLEMENTATION -->
-    <link rel="icon" type="image/jpeg" href="pulse.jpg?v=2.0">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/jpeg" href="pulse.jpg?v=3.0">
     <link rel="apple-touch-icon" href="pulse.jpg">
     
-    <!-- SEO & SCHEMA -->
     <meta name="description" content="Professional BMI analytics with medical-grade precision. Ideal weight forecasting powered by SmartCalc™ Health. WHO compliant.">
     <link rel="canonical" href="https://n1043mn1ght-web.github.io" />
 
     <style>
         :root { --primary: #2ecc71; --dark: #0f172a; --bg: #f1f5f9; --text: #1e293b; --muted: #64748b; }
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; font-family: 'Inter', system-ui, sans-serif; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
         body { margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; font-size: 14px; }
         
         header { background: var(--dark); color: white; padding: 0.6rem; text-align: center; border-bottom: 2px solid var(--primary); }
         .logo { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--primary); }
 
-        /* COMPACT WRAPPER 12/10 */
         .wrapper { max-width: 950px; margin: 10px auto; padding: 0 10px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; }
         .card { background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
         
@@ -35,38 +33,25 @@
         input[type=range] { width: 100%; appearance: none; background: #e2e8f0; height: 4px; border-radius: 10px; outline: none; margin: 8px 0; }
         input[type=range]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: white; border: 3px solid var(--primary); border-radius: 50%; cursor: pointer; }
 
-        /* RESULT PANEL */
         .res-panel { text-align: center; display: flex; flex-direction: column; justify-content: center; }
         .total-num { font-size: 3.5rem; font-weight: 900; color: var(--dark); margin: 0; letter-spacing: -3px; line-height: 1; }
         .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-weight: 800; background: #e8f8ef; color: var(--primary); font-size: 0.8rem; margin-top: 8px; }
 
         .ideal-info { margin-top: 12px; font-size: 0.75rem; color: var(--muted); padding: 10px; background: #f8fafc; border-radius: 8px; border-left: 3px solid var(--primary); }
-        
-        /* GAUGE SYSTEM */
         .gauge { height: 6px; background: linear-gradient(90deg, #f1c40f 0%, #2ecc71 25%, #27ae60 50%, #e67e22 75%, #e74c3c 100%); border-radius: 10px; margin: 15px 0 10px; position: relative; }
         .ptr { position: absolute; top: -8px; width: 4px; height: 22px; background: var(--dark); border-radius: 2px; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
 
-        /* SEO SECTION */
-        .seo-article { max-width: 950px; margin: 20px auto; padding: 25px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; line-height: 1.7; color: #475569; }
-        .seo-article h2 { font-size: 1.4rem; color: var(--dark); border: none; padding: 0; margin-bottom: 15px; text-transform: none; }
-        .seo-article h3 { font-size: 1.1rem; color: var(--dark); margin-top: 20px; }
-
-        /* ECO NAV */
         .eco-nav { grid-column: span 2; display: flex; justify-content: center; gap: 15px; padding: 8px; border-top: 1px solid #e2e8f0; margin-top: 5px; }
-        .eco-nav a { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: 0.3s; }
-        .eco-nav a:hover { color: var(--primary); }
-        
+        .eco-nav a { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-decoration: none; text-transform: uppercase; }
         .btn { width: 100%; margin-top: 12px; padding: 10px; border: none; border-radius: 8px; background: var(--dark); color: white; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
 
+        .seo-article { max-width: 950px; margin: 20px auto; padding: 25px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; line-height: 1.7; color: #475569; }
         @media (max-width: 700px) { .wrapper { grid-template-columns: 1fr; } .total-num { font-size: 2.8rem; } }
     </style>
 </head>
 <body>
-
 <header><div class="logo">Smart<span>Calc</span> Health</div></header>
-
 <main class="wrapper">
-    <!-- INPUTS -->
     <section class="card">
         <h2>Biometrics</h2>
         <div class="control-group">
@@ -79,74 +64,43 @@
         </div>
         <div class="ideal-info" id="ideal-msg">Analysis: Calculating ideal range...</div>
     </section>
-
-    <!-- OUTPUT -->
     <section class="card res-panel">
         <label>Body Mass Index</label>
         <div class="total-num" id="res-v">22.9</div>
         <div class="badge" id="stat-v">Healthy</div>
-        
         <div class="gauge"><div class="ptr" id="ptr"></div></div>
         <div style="display: flex; justify-content: space-between; font-size: 0.55rem; font-weight: 800; opacity: 0.6;">
             <span>UNDER</span><span>HEALTHY</span><span>OVER</span><span>OBESE</span>
         </div>
-
         <button class="btn" onclick="window.print()">PRINT HEALTH REPORT</button>
     </section>
-
     <nav class="eco-nav">
         <a href="https://n1043mn1ght-web.github.io">● Invest Pro</a>
         <a href="https://n1043mn1ght-web.github.io">● Mortgage Pro</a>
     </nav>
 </main>
-
-<!-- SEO GOLIATH ENGINE -->
 <article class="seo-article">
     <h2>Professional BMI Intelligence & Body Metrics</h2>
-    <p>Body Mass Index (BMI) is the primary screening metric used by clinicians worldwide to categorize physical health risk. The <strong>SmartCalc™ Health Pro</strong> engine utilizes Quetelet’s rule combined with WHO standards for surgical accuracy in biometric assessment.</p>
-    
-    <h3>Forecasting Your Ideal Weight</h3>
-    <p>Maintaining a BMI between 18.5 and 24.9 is scientifically proven to reduce risks of chronic metabolic conditions. Our tool doesn't just calculate a number—it forecasts your <strong>Ideal Weight Range</strong>, providing a clear target for nutritional and fitness goals.</p>
-    
-    <h3>Absolute Privacy & Precision</h3>
-    <p>SmartCalc™ ensures that your biometric data never leaves your device. All calculations are handled locally via client-side scripts. No tracking, no data storage—just pure, professional-grade analytics for a healthier lifestyle.</p>
+    <p>Body Mass Index (BMI) is a vital screening tool used to categorize physical health risk. The <strong>SmartCalc™ Health Pro</strong> engine utilizes Quetelet’s rule combined with WHO standards for surgical accuracy.</p>
+    <p>Maintaining a BMI between 18.5 and 24.9 is scientifically proven to reduce risks of chronic metabolic conditions. Our tool forecasts your <strong>Ideal Weight Range</strong>, providing a clear target for nutritional goals.</p>
 </article>
-
-<footer>
-    <p style="text-align:center; padding: 15px; font-size: 0.7rem; color: var(--muted);">&copy; 2024 SmartCalc™ Ecosystem. Private Medical Analytics.</p>
-</footer>
-
+<footer><p style="text-align:center; padding: 15px; font-size: 0.7rem; color: var(--muted);">&copy; 2024 SmartCalc™ Ecosystem.</p></footer>
 <script>
-    const h_i = document.getElementById('h-i'), w_i = document.getElementById('w-i'),
-          h_t = document.getElementById('h-t'), w_t = document.getElementById('w-t'),
-          res_v = document.getElementById('res-v'), stat_v = document.getElementById('stat-v'),
-          ptr = document.getElementById('ptr'), ideal_msg = document.getElementById('ideal-msg');
-
+    const h_i = document.getElementById('h-i'), w_i = document.getElementById('w-i'), h_t = document.getElementById('h-t'), w_t = document.getElementById('w-t'), res_v = document.getElementById('res-v'), stat_v = document.getElementById('stat-v'), ptr = document.getElementById('ptr'), ideal_msg = document.getElementById('ideal-msg');
     function update() {
         const h = h_i.value, w = w_i.value;
         const bmi = (w / ((h / 100) ** 2)).toFixed(1);
-        
-        const minW = (18.5 * ((h / 100) ** 2)).toFixed(0);
-        const maxW = (24.9 * ((h / 100) ** 2)).toFixed(0);
-        
-        h_t.innerText = h + ' cm';
-        w_t.innerText = w + ' kg';
-        res_v.innerText = bmi;
+        const minW = (18.5 * ((h / 100) ** 2)).toFixed(0), maxW = (24.9 * ((h / 100) ** 2)).toFixed(0);
+        h_t.innerText = h + ' cm'; w_t.innerText = w + ' kg'; res_v.innerText = bmi;
         ideal_msg.innerHTML = `Ideal Weight Range: <b>${minW} – ${maxW} kg</b>`;
-
         let pos = ((bmi - 15) / (40 - 15)) * 100;
         ptr.style.left = Math.max(2, Math.min(98, pos)) + '%';
-
         if (bmi < 18.5) { set("Underweight", "#f1c40f", "#fef9e7"); }
         else if (bmi < 25) { set("Healthy", "#2ecc71", "#e8f8ef"); }
         else if (bmi < 30) { set("Overweight", "#e67e22", "#fdf2e9"); }
         else { set("Obesity", "#e74c3c", "#fdedec"); }
     }
-
-    function set(t, c, bg) {
-        stat_v.innerText = t; stat_v.style.color = c; stat_v.style.background = bg;
-    }
-
+    function set(t, c, bg) { stat_v.innerText = t; stat_v.style.color = c; stat_v.style.background = bg; }
     [h_i, w_i].forEach(el => el.addEventListener('input', update));
     update();
 </script>
