@@ -138,7 +138,6 @@
 
 <header>
     <div class="header-inner">
-        <!-- Заменили # на прямую ссылку на ваш главный Хаб -->
         <a href="https://n1043mn1ght-web.github.io/smartcalc-main/" class="logo">Smart<span>Calc</span>™</a>
         <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a;">✓ AUTHORITY RANK #1</div>
     </div>
@@ -162,6 +161,11 @@
         <div class="ideal-weight-pill" id="ideal-msg">
             Ideal Weight Range: <b>57 – 76 kg</b>
         </div>
+
+        <!-- БЛОК COMPARE & ACT: Инсайт под калькулятором -->
+        <div class="insight-note">
+            <strong>💡 Pro Insight:</strong> Your <strong>Biological Ideal Weight</strong> is calculated based on a BMI of 22.0. Achieving this range significantly reduces long-term metabolic stress.
+        </div>
     </section>
 
     <aside class="res-panel">
@@ -180,7 +184,16 @@
             <span>OBESE</span>
         </div>
 
-        <button style="width:100%; padding:18px; border:none; border-radius:12px; background:var(--primary); color:#fff; font-weight:800; margin-top:25px; cursor:pointer;" onclick="window.print()">DOWNLOAD CLINICAL REPORT</button>
+        <!-- БЛОК COMPARE & ACT: Таблица сравнения ВОЗ -->
+        <div class="action-card" style="color: var(--navy-deep); text-align: left; margin-top: 25px;">
+            <div style="font-size: 0.7rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px;">WHO Standards</div>
+            <div class="compare-row" id="row-under"><span>Underweight</span> <b>< 18.5</b></div>
+            <div class="compare-row active" id="row-normal"><span>Healthy Range</span> <b>18.5 – 24.9</b></div>
+            <div class="compare-row" id="row-over"><span>Overweight</span> <b>25.0 – 29.9</b></div>
+            <div class="compare-row" id="row-obese"><span>Obese Class</span> <b>> 30.0</b></div>
+        </div>
+
+        <button style="width:100%; padding:18px; border:none; border-radius:12px; background:var(--primary); color:#fff; font-weight:800; margin-top:20px; cursor:pointer;" onclick="window.print()">DOWNLOAD CLINICAL REPORT</button>
     </aside>
 </main>
 
@@ -211,7 +224,12 @@
 </section>
 
 <footer>
-    &copy; 2026 SmartCalc Health Intelligence Engine. All Rights Reserved.
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        &copy; 2026 SmartCalc Health Intelligence Engine. All Rights Reserved.
+        <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 15px; line-height: 1.5;">
+            Disclaimer: The results provided by the SmartCalc™ Engine are for informational purposes only and do not substitute professional medical advice. Always consult with a healthcare professional regarding health concerns.
+        </p>
+    </div>
 </footer>
 
 <script>
@@ -233,20 +251,33 @@
         const bmi = (w / ((h/100)**2)).toFixed(1);
         resVal.innerText = bmi;
 
-        // Ideal weight calculation
         const iMin = (18.5 * ((h/100)**2)).toFixed(0);
         const iMax = (24.9 * ((h/100)**2)).toFixed(0);
         idealMsg.innerHTML = `Ideal Weight Range: <b>${iMin} – ${iMax} kg</b>`;
 
-        // Logic for UI
         let status = "Healthy";
         let color = "#2ecc71";
         let pos = 40;
 
-        if(bmi < 18.5) { status = "Underweight"; color = "#f1c40f"; pos = 15; }
-        else if(bmi <= 25) { status = "Healthy"; color = "#2ecc71"; pos = 40; }
-        else if(bmi <= 30) { status = "Overweight"; color = "#e67e22"; pos = 65; }
-        else { status = "Obese"; color = "#e74c3c"; pos = 90; }
+        // Reset rows
+        document.querySelectorAll('.compare-row').forEach(r => r.classList.remove('active'));
+
+        if(bmi < 18.5) { 
+            status = "Underweight"; color = "#f1c40f"; pos = 15; 
+            document.getElementById('row-under').classList.add('active');
+        }
+        else if(bmi <= 24.9) { 
+            status = "Healthy"; color = "#2ecc71"; pos = 40; 
+            document.getElementById('row-normal').classList.add('active');
+        }
+        else if(bmi <= 29.9) { 
+            status = "Overweight"; color = "#e67e22"; pos = 65; 
+            document.getElementById('row-over').classList.add('active');
+        }
+        else { 
+            status = "Obese"; color = "#e74c3c"; pos = 90; 
+            document.getElementById('row-obese').classList.add('active');
+        }
 
         statVal.innerText = status;
         statVal.style.background = color;
@@ -258,7 +289,9 @@
 </script>
 
 </body>
+
 </html>
+
 
 
 
