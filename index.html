@@ -131,6 +131,29 @@
 
         @media (max-width: 850px) { .wrapper, .seo-article { grid-template-columns: 1fr; } }
     </style>
+    <!-- FAQ Schema: Делает ваш сниппет огромным и кликабельным -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is a healthy BMI for adults?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For most adults, an ideal BMI is in the 18.5 to 24.9 range. Our 2026 SmartCalc engine uses WHO clinical standards to categorize your results."
+    }
+  }, {
+    "@type": "Question",
+    "name": "Is BMI accurate for athletes?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "BMI is a screening tool. It may overestimate body fat in athletes with high muscle mass. For professional analysis, consider body fat percentage tests."
+    }
+  }]
+}
+</script>
+
 </head>
 
 
@@ -291,6 +314,7 @@
 </body>
 
 </html>
+
 
 
 
